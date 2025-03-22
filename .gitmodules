@@ -1,0 +1,3 @@
+[submodule "firmware/dependencies/esp-idf"]
+	path = firmware/dependencies/esp-idf
+	url = https://github.com/espressif/esp-idf.git
