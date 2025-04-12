@@ -20,7 +20,7 @@ export default function Home() {
         }}
       >
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI - Next.js example in TypeScript
+          Hello world!
         </Typography>
         <Box sx={{ maxWidth: "sm" }}>
           <Button variant="contained" component={NextLink} href="/">
