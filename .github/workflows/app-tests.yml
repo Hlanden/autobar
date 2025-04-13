@@ -26,10 +26,9 @@ jobs:
       working-directory: app
     - name: Test Report
       uses: dorny/test-reporter@v2
-      working-directory: app
       with:
         name: App Unit Tests
-        path: test-results/jest/*.xml
+        path: app/test-results/jest/*.xml
         reporter: junit
         use-actions-summary: true
   end-to-end-tests:
@@ -56,9 +55,8 @@ jobs:
         retention-days: 30
     - name: Test Report
       uses: dorny/test-reporter@v2
-      working-directory: app
       with:
         name: App End-To-End Tests
-        path: test-results/playwright/*.xml
+        path: app/test-results/playwright/*.xml
         reporter: junit
         use-actions-summary: true
