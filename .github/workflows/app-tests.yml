@@ -4,10 +4,12 @@ on:
     branches: [ main, dev, release/* ]
     paths: 
       - 'app/**'
+      - '.github/**'
   pull_request:
     branches: [ main, dev, release/* ]
     paths: 
       - 'app/**'
+      - '.github/**'
 jobs:
   unit-tests: 
     timeout-minutes: 60
