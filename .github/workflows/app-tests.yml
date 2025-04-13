@@ -11,8 +11,8 @@ on:
       - 'app/**'
       - '.github/**'
 jobs:
-  eslint:
-    name: Run eslint scanning
+  static-tests: 
+    name: Run static tests
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -24,7 +24,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+      - name: Install dependencies
+        run: |
+          npm ci
+        working-directory: app
+      - name: Formatter check
+        run: |
+          npm run format:check
+        working-directory: app
+      - name: Type check
+        if: success() || failure()
+        run: |
+          npm run type-check
+        working-directory: app
       - name: Install ESLint
+        if: success() || failure()
         run: |
           npm install eslint@9.24.0
           npm install @microsoft/eslint-formatter-sarif@3.1.0
@@ -45,7 +59,7 @@ jobs:
           sarif_file: app/eslint-results.sarif
           wait-for-processing: true
   unit-tests: 
-    needs: [eslint]
+    needs: [static-tests]
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -70,7 +84,7 @@ jobs:
         list-tests: 'failed'
         use-actions-summary: true
   end-to-end-tests:
-    needs: [eslint]
+    needs: [static-tests]
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
