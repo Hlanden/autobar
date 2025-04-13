@@ -1,10 +1,5 @@
 name: App Automated Testing
 on:
-  push:
-    branches: [ main, dev, release/* ]
-    paths: 
-      - 'app/**'
-      - '.github/**'
   pull_request:
     branches: [ main, dev, release/* ]
     paths: 
@@ -15,6 +10,7 @@ jobs:
     name: Run static tests
     runs-on: ubuntu-latest
     permissions:
+      checks: write
       contents: read
       security-events: write
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
@@ -60,6 +56,8 @@ jobs:
     needs: [static-tests]
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -85,6 +83,8 @@ jobs:
     needs: [static-tests]
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
