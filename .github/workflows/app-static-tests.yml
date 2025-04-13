@@ -31,15 +31,15 @@ jobs:
       - name: Run ESLint
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
-        run: npx eslint .
-          --config ./eslint.config.mjs
+        # Have to prepend .. due to a bug in the paths
+        run: npx eslint src/
+          --config ../${{ github.workspace }}/app/eslint.config.mjs 
           --ext .js,.jsx,.ts,.tsx
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
         continue-on-error: true
-        working-directory: app
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: app/eslint-results.sarif
+          sarif_file: eslint-results.sarif
           wait-for-processing: true
