@@ -1,4 +1,4 @@
-name: Automatic Testing
+name: Automated Testing
 on:
   push:
     branches: [ main, dev, release/* ]
