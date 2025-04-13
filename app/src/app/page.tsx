@@ -19,8 +19,8 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Hello world!
+        <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
+          Autobar
         </Typography>
         <Box sx={{ maxWidth: "sm" }}>
           <Button variant="contained" component={NextLink} href="/">
