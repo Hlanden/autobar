@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier -w src/",
+    "format:check": "prettier -c src/",
+    "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -34,6 +37,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-junit": "^16.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prettier": "^3.5.3"
   }
 }
