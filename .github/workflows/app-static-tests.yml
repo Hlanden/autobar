@@ -21,24 +21,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
       - name: Install ESLint
         run: |
           npm install eslint@8.10.0
           npm install @microsoft/eslint-formatter-sarif@3.1.0
-
       - name: Run ESLint
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: npx eslint .
-          --config app/eslint.config.mjs
+          --config ./eslint.config.mjs
           --ext .js,.jsx,.ts,.tsx
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
         continue-on-error: true
-
+        working-directory: app
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: eslint-results.sarif
+          sarif_file: app/eslint-results.sarif
           wait-for-processing: true
