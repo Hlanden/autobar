@@ -33,6 +33,7 @@ jobs:
         name: App Unit Tests
         path: app/test-results/jest/*.xml
         reporter: jest-junit
+        list-tests: 'failed'
         use-actions-summary: true
   end-to-end-tests:
     timeout-minutes: 60
@@ -63,4 +64,5 @@ jobs:
         name: App End-To-End Tests
         path: app/test-results/playwright/*.xml
         reporter: java-junit
+        list-tests: 'failed'
         use-actions-summary: true
