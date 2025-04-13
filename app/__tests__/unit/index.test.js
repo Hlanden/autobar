@@ -9,6 +9,6 @@ describe('Home page', () => {
     const heading = screen.getByRole('heading', { level: 1 })
  
     expect(heading).toBeInTheDocument()
-    expect(heading.textContent).toBe("Hello world!")
+    expect(heading.textContent).toBe("Autobar")
   })
 })
